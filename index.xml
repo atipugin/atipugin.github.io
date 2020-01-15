@@ -1,4 +1,58 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>@atipugin</title><link>https://atipugin.dev/</link><description>Здесь будет описание</description><language>ru</language><managingEditor>atipugin@gmail.com (Alexander Tipugin)</managingEditor><webMaster>atipugin@gmail.com (Alexander Tipugin)</webMaster><image>https://atipugin.dev/images/me.png</image><lastBuildDate>Thu, 09 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://atipugin.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Привет, мир!</title><link>https://atipugin.dev/posts/hello-world/</link><description>&lt;p>Решил провести новогодние праздники с пользой и наконец-то сделать то, что давно хотел, но не доходили руки - завести блог.&lt;/p>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>@atipugin</title><link>https://atipugin.dev/</link><description>Здесь будет описание</description><language>ru</language><managingEditor>atipugin@gmail.com (Alexander Tipugin)</managingEditor><webMaster>atipugin@gmail.com (Alexander Tipugin)</webMaster><image>https://atipugin.dev/images/me.png</image><lastBuildDate>Wed, 15 Jan 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://atipugin.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Расширения для VS Code</title><link>https://atipugin.dev/posts/vscode-extensions/</link><description>&lt;p>Решил немного рассказать о расширениях для VS Code, которые здорово упрощают мою жизнь. Специально не стал упоминать ничего, связанного конкретными языками (&lt;a href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.Go" target="_blank">Go&lt;/a>
+, &lt;a href="https://marketplace.visualstudio.com/items?itemName=rebornix.Ruby" target="_blank">Ruby&lt;/a>
+, &lt;a href="https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode" target="_blank">Prettier&lt;/a>
+), потому что тут уже зависит, на чем вы пишите.&lt;/p>
+&lt;h2 id="editorconfig">EditorConfig&lt;/h2>
+&lt;p>EditorConfig - первое расширение, которое я ставлю в любом редакторе, который планирую более-менее серьезно использовать. Если вы еще не в курсе (такое возможно?), то &lt;a href="https://editorconfig.org" target="_blank">EditorConfig&lt;/a>
+автоматически применяет правила форматирования текста в зависимости от типа файла. Правила определяется в файле с конфигом (&lt;a href="https://github.com/atipugin/dotfiles/blob/master/editorconfig" target="_blank">вот мой&lt;/a>
+, например). В больших проектах, в которых участвует много разработчиков, удобно добавлять такой конфиг прямо в репозиторий, чтобы у всех были одинаковые настройки.&lt;/p>
+&lt;p>&lt;a href="https://marketplace.visualstudio.com/items?itemName=EditorConfig.EditorConfig" target="_blank">Открыть на Marketplace&lt;/a>
+&lt;/p>
+&lt;h2 id="git-blame">Git Blame&lt;/h2>
+&lt;p>Git Blame - простое и супер-удобное расширение для работы с &lt;code>git blame&lt;/code>. Просто ставите курсор на интересующую строку в файле, нажимаете на кнопку и получаете описание коммита с возможностью перейти на страницу с коммитом на GitHub/GitLab/что-там-у-вас.&lt;/p>
+&lt;p>&lt;img class="img-fluid" src="git-blame.gif" alt="Git Blame">
+&lt;/p>
+&lt;p>Раньше для этих целей я использовал &lt;a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" target="_blank">GitLens&lt;/a>
+, но в какой-то момент устал от его тормозов и перешел на Git Blame.&lt;/p>
+&lt;p>&lt;a href="https://marketplace.visualstudio.com/items?itemName=waderyan.gitblame" target="_blank">Открыть на Marketplace&lt;/a>
+&lt;/p>
+&lt;h2 id="project-manager">Project Manager&lt;/h2>
+&lt;p>Project Manager сильно упрощает жизнь в плане быстрой навигации между проектами. Вы можете либо вручную добавлять проекты в избранное, либо прописать в настройках папки, в которых расширение будет искать, например, git-репозитории:&lt;/p>
+&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;span style="color:#f92672">&amp;#34;projectManager.git.baseFolders&amp;#34;&lt;/span>: [
+&lt;span style="color:#e6db74">&amp;#34;/Users/atipugin/Code&amp;#34;&lt;/span>
+]
+}
+&lt;/code>&lt;/pre>&lt;/div>&lt;p>В примере выше Project Manager просканирует всю папку &lt;code>Code&lt;/code> и добавит найденные репозитории в список проектов, между которыми можно быстро переключаться.&lt;/p>
+&lt;p>&lt;a href="https://marketplace.visualstudio.com/items?itemName=alefragnani.project-manager" target="_blank">Открыть на Marketplace&lt;/a>
+&lt;/p>
+&lt;h2 id="better-comments">Better Comments&lt;/h2>
+&lt;p>Better Comments раскрашивает комментарии в коде в зависимости от их типа, который определяется по префиксу в начале строки. Например, TODO или предупреждения, на которые нужно обратить внимание.&lt;/p>
+&lt;p>Так выглядит код без Better Comments:&lt;/p>
+&lt;p>&lt;img class="img-fluid" src="better-comments-off.png" alt="Без Better Comments">
+&lt;/p>
+&lt;p>А так с ним:&lt;/p>
+&lt;p>&lt;img class="img-fluid" src="better-comments-on.png" alt="С Better Comments">
+&lt;/p>
+&lt;p>&lt;a href="https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments" target="_blank">Открыть на Marketplace&lt;/a>
+&lt;/p>
+&lt;h2 id="todo-tree">Todo Tree&lt;/h2>
+&lt;p>Если вы, как и я, любите развешивать в коде комментарии вида &lt;code>TODO: Не забыть выпилить это через месяц&lt;/code>, то вы точно оцените Todo Tree. Это расширение сканирует текущий проект, находит все подобные напоминания и формирует эдакий &amp;ldquo;список дел&amp;rdquo;.&lt;/p>
+&lt;p>Выглядит примерно так:&lt;/p>
+&lt;p>&lt;img class="img-fluid" src="todo-tree.png" alt="Todo Tree">
+&lt;/p>
+&lt;p>&lt;a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree" target="_blank">Открыть на Marketplace&lt;/a>
+&lt;/p>
+&lt;h2 id="тема-оформления">Тема оформления&lt;/h2>
+&lt;p>В комментариях под видео часто спрашивают, какой темой оформления я пользуюсь. Рассказываю:&lt;/p>
+&lt;ul>
+&lt;li>Тема - &lt;a href="https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme" target="_blank">One Dark Pro&lt;/a>
+&lt;/li>
+&lt;li>Иконки - &lt;a href="https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme" target="_blank">Material Icon Theme&lt;/a>
+&lt;/li>
+&lt;/ul>
+&lt;p>Полный список плагинов, которыми я пользуюсь, можно найти &lt;a href="https://github.com/atipugin/dotfiles/blob/master/vscode_extensions.txt" target="_blank">здесь&lt;/a>
+.&lt;/p></description><author>atipugin@gmail.com (Alexander Tipugin)</author><guid>https://atipugin.dev/posts/vscode-extensions/</guid><pubDate>Wed, 15 Jan 2020 00:00:00 +0000</pubDate></item><item><title>Привет, мир!</title><link>https://atipugin.dev/posts/hello-world/</link><description>&lt;p>Решил провести новогодние праздники с пользой и наконец-то сделать то, что давно хотел, но не доходили руки - завести блог.&lt;/p>
 &lt;p>Полгода назад я завел &lt;a href="http://youtube.com/c/GopherSchool" target="_blank">канал на YouTube&lt;/a>
 , где делюсь своим опытом в Go. Сам того не ожидая, я получил много позитивных отзывов от людей и понял, что хочу больше делиться какими-то своими знаниями и опытом, рассказывать об интересных мне вещах. Но в формате видео делать это достаточно сложно, потому что даже небольшой ролик отнимает немало времени и сил. Найти тему, написать скрипт, записать видео, смонтировать его и т.д. С текстом же все проще - писать посты можно даже в метро по дороге на работу.&lt;/p>
 &lt;p>Сначала были мысли просто завести канал в Telegram, но быстро отказался от этой затеи - слишком уж много ограничений. Поэтому за несколько дней я сел и собрал себе небольшой статичный сайт, благо в 2020 это совсем просто. Из инструментов я взял Hugo для генерации HTML и Webpack для сборки ассетов. Сайт собирается и заливается на &lt;a href="https://pages.github.com" target="_blank">GitHub Pages&lt;/a>
