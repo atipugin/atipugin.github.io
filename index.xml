@@ -10,7 +10,7 @@
 &lt;/p>
 &lt;h2 id="git-blame">Git Blame&lt;/h2>
 &lt;p>Git Blame - простое и супер-удобное расширение для работы с &lt;code>git blame&lt;/code>. Просто ставите курсор на интересующую строку в файле, нажимаете на кнопку и получаете описание коммита с возможностью перейти на страницу с коммитом на GitHub/GitLab/что-там-у-вас.&lt;/p>
-&lt;p>&lt;img class="img-fluid" src="git-blame.gif" alt="Git Blame">
+&lt;p>&lt;img class="img-fluid" src="https://atipugin.dev/git-blame.gif" alt="Git Blame">
 &lt;/p>
 &lt;p>Раньше для этих целей я использовал &lt;a href="https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens" target="_blank">GitLens&lt;/a>
 , но в какой-то момент устал от его тормозов и перешел на Git Blame.&lt;/p>
@@ -29,17 +29,17 @@
 &lt;h2 id="better-comments">Better Comments&lt;/h2>
 &lt;p>Better Comments раскрашивает комментарии в коде в зависимости от их типа, который определяется по префиксу в начале строки. Например, TODO или предупреждения, на которые нужно обратить внимание.&lt;/p>
 &lt;p>Так выглядит код без Better Comments:&lt;/p>
-&lt;p>&lt;img class="img-fluid" src="better-comments-off.png" alt="Без Better Comments">
+&lt;p>&lt;img class="img-fluid" src="https://atipugin.dev/better-comments-off.png" alt="Без Better Comments">
 &lt;/p>
 &lt;p>А так с ним:&lt;/p>
-&lt;p>&lt;img class="img-fluid" src="better-comments-on.png" alt="С Better Comments">
+&lt;p>&lt;img class="img-fluid" src="https://atipugin.dev/better-comments-on.png" alt="С Better Comments">
 &lt;/p>
 &lt;p>&lt;a href="https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments" target="_blank">Открыть на Marketplace&lt;/a>
 &lt;/p>
 &lt;h2 id="todo-tree">Todo Tree&lt;/h2>
 &lt;p>Если вы, как и я, любите развешивать в коде комментарии вида &lt;code>TODO: Не забыть выпилить это через месяц&lt;/code>, то вы точно оцените Todo Tree. Это расширение сканирует текущий проект, находит все подобные напоминания и формирует эдакий &amp;ldquo;список дел&amp;rdquo;.&lt;/p>
 &lt;p>Выглядит примерно так:&lt;/p>
-&lt;p>&lt;img class="img-fluid" src="todo-tree.png" alt="Todo Tree">
+&lt;p>&lt;img class="img-fluid" src="https://atipugin.dev/todo-tree.png" alt="Todo Tree">
 &lt;/p>
 &lt;p>&lt;a href="https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree" target="_blank">Открыть на Marketplace&lt;/a>
 &lt;/p>
