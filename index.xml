@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>@atipugin</title><link>https://atipugin.dev/</link><description>Здесь будет описание</description><language>ru</language><managingEditor>atipugin@gmail.com (Alexander Tipugin)</managingEditor><webMaster>atipugin@gmail.com (Alexander Tipugin)</webMaster><image>https://atipugin.dev/images/me.png</image><lastBuildDate>Sun, 01 Mar 2020 00:00:00 +0000</lastBuildDate><atom:link href="https://atipugin.dev/index.xml" rel="self" type="application/rss+xml"/><item><title>Make main() great again</title><link>https://atipugin.dev/posts/make-main-great-again/</link><description>&lt;p>Сегодня поговорим про &lt;code>main&lt;/code>. Поскольку это отправная точка любого нашего Go-приложения, мы хотим иметь возможность удобно тестировать происходящее там.&lt;/p>
 &lt;p>Представим код:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
 &lt;span style="color:#a6e22e">fmt&lt;/span>.&lt;span style="color:#a6e22e">Println&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;Hello, world&amp;#34;&lt;/span>)
 }
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Даже для такого простого примера мы не можем взять и написать тест, проверяющий его корректность. Всё из-за того, что &lt;code>main&lt;/code> не принимает и не возвращает никаких аргументов, и поделать с этим ничего нельзя - сигнатуру поменять мы не можем.&lt;/p>
 &lt;p>Но решение есть. Мы можем добавить новую функцию-делегат, перенести туда всю нашу логику, а в &lt;code>main&lt;/code> просто вызвать её:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">main&lt;/span>() {
 &lt;span style="color:#66d9ef">if&lt;/span> &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">realMain&lt;/span>(&lt;span style="color:#a6e22e">os&lt;/span>.&lt;span style="color:#a6e22e">Stdin&lt;/span>, &lt;span style="color:#a6e22e">os&lt;/span>.&lt;span style="color:#a6e22e">Stdout&lt;/span>, &lt;span style="color:#a6e22e">os&lt;/span>.&lt;span style="color:#a6e22e">Args&lt;/span>); &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">!=&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span> {
 &lt;span style="color:#a6e22e">log&lt;/span>.&lt;span style="color:#a6e22e">Fatal&lt;/span>(&lt;span style="color:#a6e22e">err&lt;/span>)
 }
@@ -17,7 +17,7 @@
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Наша новая функция &lt;code>realMain&lt;/code> принимает на вход стандартный ввод/вывод (&lt;code>os.Stdin&lt;/code>, &lt;code>os.Stdout&lt;/code>), а также аргументы командной строки (&lt;code>os.Args&lt;/code>). В качестве типов данных используются максимально простые интерфейсы &lt;code>io.Reader&lt;/code> и &lt;code>io.Writer&lt;/code>. На выходе &lt;code>realMain&lt;/code> может вернуть ошибку, если что-то пошло не так.&lt;/p>
 &lt;p>Здесь важно обратить внимание на то, что теперь мы не должны использовать стандартный ввод/вывод напрямую. Именно поэтому мы заменили &lt;code>fmt.Println(...)&lt;/code>, на &lt;code>fmt.Fprintln(out, ...)&lt;/code>.&lt;/p>
 &lt;p>Такую конструкцию мы уже можем без проблем протестировать:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">TestRealMain&lt;/span>(&lt;span style="color:#a6e22e">t&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">testing&lt;/span>.&lt;span style="color:#a6e22e">T&lt;/span>) {
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">TestRealMain&lt;/span>(&lt;span style="color:#a6e22e">t&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">testing&lt;/span>.&lt;span style="color:#a6e22e">T&lt;/span>) {
 &lt;span style="color:#75715e">// Вместо реального ввода/вывода мы будем использовать bytes.Buffer
 &lt;/span>&lt;span style="color:#75715e">&lt;/span> &lt;span style="color:#66d9ef">var&lt;/span> &lt;span style="color:#a6e22e">in&lt;/span>, &lt;span style="color:#a6e22e">out&lt;/span> &lt;span style="color:#a6e22e">bytes&lt;/span>.&lt;span style="color:#a6e22e">Buffer&lt;/span>
 &lt;span style="color:#a6e22e">err&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> &lt;span style="color:#a6e22e">realMain&lt;/span>(&lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">in&lt;/span>, &lt;span style="color:#f92672">&amp;amp;&lt;/span>&lt;span style="color:#a6e22e">out&lt;/span>, []&lt;span style="color:#66d9ef">string&lt;/span>{&lt;span style="color:#e6db74">&amp;#34;test&amp;#34;&lt;/span>})
@@ -25,9 +25,9 @@
 &lt;span style="color:#a6e22e">assert&lt;/span>.&lt;span style="color:#a6e22e">Contains&lt;/span>(&lt;span style="color:#a6e22e">t&lt;/span>, &lt;span style="color:#a6e22e">out&lt;/span>.&lt;span style="color:#a6e22e">String&lt;/span>(), &lt;span style="color:#e6db74">&amp;#34;Hello, world!&amp;#34;&lt;/span>)
 }
 &lt;/code>&lt;/pre>&lt;/div>&lt;h2 id="работа-с-флагами">Работа с флагами&lt;/h2>
-&lt;p>Немного усложним наш пример. Теперь мы хотим выводить в консоль не просто &amp;ldquo;Hello, world!&amp;quot;, но и имя, которое можно задать с помощью флага &lt;code>-name&lt;/code>. Если же имя не указано, то необходимо вернуть пользователю ошибку.&lt;/p>
+&lt;p>Немного усложним наш пример. Теперь мы хотим выводить в консоль не просто &amp;ldquo;Hello, world!&amp;rdquo;, но и имя, которое можно задать с помощью флага &lt;code>-name&lt;/code>. Если же имя не указано, то необходимо вернуть пользователю ошибку.&lt;/p>
 &lt;p>Флаги командной строки мы можем получить из параметра &lt;code>args&lt;/code> следующим образом:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">var&lt;/span> (
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">var&lt;/span> (
 &lt;span style="color:#a6e22e">errNoNameGiven&lt;/span> = &lt;span style="color:#a6e22e">errors&lt;/span>.&lt;span style="color:#a6e22e">New&lt;/span>(&lt;span style="color:#e6db74">&amp;#34;no name given&amp;#34;&lt;/span>)
 )
 &lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">realMain&lt;/span>(&lt;span style="color:#a6e22e">in&lt;/span> &lt;span style="color:#a6e22e">io&lt;/span>.&lt;span style="color:#a6e22e">Reader&lt;/span>, &lt;span style="color:#a6e22e">out&lt;/span> &lt;span style="color:#a6e22e">io&lt;/span>.&lt;span style="color:#a6e22e">Writer&lt;/span>, &lt;span style="color:#a6e22e">args&lt;/span> []&lt;span style="color:#66d9ef">string&lt;/span>) &lt;span style="color:#66d9ef">error&lt;/span> {
@@ -45,7 +45,7 @@
 &lt;span style="color:#66d9ef">return&lt;/span> &lt;span style="color:#66d9ef">nil&lt;/span>
 }
 &lt;/code>&lt;/pre>&lt;/div>&lt;p>Мы можем воспользоваться табличными тестами, чтобы проверить поведение нашего приложения при разных флагах на входе:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">TestRealMain&lt;/span>(&lt;span style="color:#a6e22e">t&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">testing&lt;/span>.&lt;span style="color:#a6e22e">T&lt;/span>) {
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-go" data-lang="go">&lt;span style="color:#66d9ef">func&lt;/span> &lt;span style="color:#a6e22e">TestRealMain&lt;/span>(&lt;span style="color:#a6e22e">t&lt;/span> &lt;span style="color:#f92672">*&lt;/span>&lt;span style="color:#a6e22e">testing&lt;/span>.&lt;span style="color:#a6e22e">T&lt;/span>) {
 &lt;span style="color:#a6e22e">testCases&lt;/span> &lt;span style="color:#f92672">:=&lt;/span> []&lt;span style="color:#66d9ef">struct&lt;/span> {
 &lt;span style="color:#a6e22e">name&lt;/span> &lt;span style="color:#66d9ef">string&lt;/span>
 &lt;span style="color:#a6e22e">flags&lt;/span> []&lt;span style="color:#66d9ef">string&lt;/span>
@@ -95,7 +95,7 @@
 &lt;/p>
 &lt;h2 id="project-manager">Project Manager&lt;/h2>
 &lt;p>Project Manager сильно упрощает жизнь в плане быстрой навигации между проектами. Вы можете либо вручную добавлять проекты в избранное, либо прописать в настройках папки, в которых расширение будет искать, например, git-репозитории:&lt;/p>
-&lt;div class="highlight">&lt;pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
+&lt;div class="highlight">&lt;pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4">&lt;code class="language-json" data-lang="json">{
 &lt;span style="color:#f92672">&amp;#34;projectManager.git.baseFolders&amp;#34;&lt;/span>: [
 &lt;span style="color:#e6db74">&amp;#34;/Users/atipugin/Code&amp;#34;&lt;/span>
 ]
